@@ -57,12 +57,36 @@ for (f in list.files("data", pattern = "[.](csv|yml)$", full.names = TRUE)) {
 }
 
 cat("\nValue snapshots\n")
-# TODO value snapshots: pin the actual numbers for each output file, so a
-# legitimate data update fails here and says exactly what changed. For each
-# dataset check at least: row count, the first and last row in source order,
-# and the minimum and maximum of each value column. Compare as strings where
-# the source precision matters. See the source CSV in data-raw/ for the values.
-check("value snapshots have been written", FALSE)
+# Pins the numbers so a data update fails here and says what changed. Values are
+# compared as strings to keep the source precision.
+snapshot <- function(file, rows, first, last, ranges) {
+  d <- rd(file)
+  check(sprintf("%s: %d rows", file, rows), nrow(d) == rows)
+  check(sprintf("%s: first row", file), identical(unlist(d[1, ]), first))
+  check(sprintf("%s: last row", file), identical(unlist(d[nrow(d), ]), last))
+  for (s in names(ranges)) {
+    v <- d$value[d$series == s]
+    n <- as.numeric(v)
+    check(sprintf("%s: %s min", file, s), identical(v[which.min(n)], ranges[[s]][1]))
+    check(sprintf("%s: %s max", file, s), identical(v[which.max(n)], ranges[[s]][2]))
+    check(sprintf("%s: %s covers 1966-2013", file, s),
+          identical(d$year[d$series == s], as.character(1966:2013)))
+  }
+}
+
+snapshot("bird_center_latitude_change.csv", 144L,
+         c(year = "1966", series = "mean", value = "0"),
+         c(year = "2013", series = "upper_confidence", value = "62.78622154"),
+         list(mean             = c("-1.259309975", "45.24713787"),
+              lower_confidence = c("-7.502975833", "26.649291"),
+              upper_confidence = c("0", "66.63876502")))
+
+snapshot("bird_center_coast_distance_change.csv", 144L,
+         c(year = "1966", series = "mean", value = "0"),
+         c(year = "2013", series = "upper_confidence", value = "22.75034037"),
+         list(mean             = c("-6.64391639", "13.42922869"),
+              lower_confidence = c("-11.65548914", "4.108117005"),
+              upper_confidence = c("-1.632343644", "22.75034037")))
 
 cat("\n")
 if (length(failures)) {

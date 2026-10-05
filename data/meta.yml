@@ -1,0 +1,52 @@
+indicator:
+  name: Bird Wintering Ranges
+  slug: bird-wintering-ranges
+  publisher: U.S. Environmental Protection Agency
+  source_page: https://19january2025snapshot.epa.gov/climate-indicators/climate-change-indicators-bird-wintering-ranges/index.html
+  technical_documentation: https://19january2025snapshot.epa.gov/system/files/documents/2024-08/bird-ranges_documentation.pdf
+  rights: Public domain, work of the U.S. Government (17 U.S.C. 105)
+datasets:
+- file: bird_center_latitude_change.csv
+  figure: Figure 1
+  figure_title: Figure 1. Change in Latitude of Bird Center of Abundance, 1966-2013
+  source_file: bird-ranges_fig-1.csv
+  source_sha256: b2c9432fdef5003a74fc6c5c4eb6a9f7d9337053325ac61ee5d9e16265a1b099
+  source_encoding: UTF-8
+  data_source: National Audubon Society, 2014
+  web_update: May 2014
+  unit: Average distance moved north (miles)
+  rows: 144
+  columns:
+  - name: year
+    type: integer
+    description: Winter, identified by the calendar year in which it began
+  - name: series
+    type: string
+    description: mean, lower_confidence or upper_confidence (bounds of the likely
+      range around the mean)
+  - name: value
+    type: number
+    description: Average distance moved north (miles), change from the 1966 baseline
+- file: bird_center_coast_distance_change.csv
+  figure: Figure 2
+  figure_title: Figure 2. Change in Distance to Coast of Bird Center of Abundance,
+    1966-2013
+  source_file: bird-ranges_fig-2.csv
+  source_sha256: 9a27f326cdbe4bd3ed42967e99ad883b8cf4401c3e55abc85ce3fa6612cb5020
+  source_encoding: UTF-8
+  data_source: National Audubon Society, 2014
+  web_update: May 2014
+  unit: Average distance moved inland from coast (miles)
+  rows: 144
+  columns:
+  - name: year
+    type: integer
+    description: Winter, identified by the calendar year in which it began
+  - name: series
+    type: string
+    description: mean, lower_confidence or upper_confidence (bounds of the likely
+      range around the mean)
+  - name: value
+    type: number
+    description: Average distance moved inland from coast (miles), change from the
+      1966 baseline
