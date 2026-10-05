@@ -58,4 +58,6 @@ Bird center-of-abundance data were collected by the annual Christmas Bird Count 
 
 ## References
 
-1. <sup></sup>
+1. La Sorte, F. A., & Thompson III, F. R. (2007). Poleward shifts in winter ranges of North American birds. *Ecology, 88*(7), 1803–1812. <https://doi.org/10.1890/06-1072.1>
+2. Niven, D. K., Butcher, G. S., & Bancroft, G. T. (2009). Christmas Bird Counts and climate change: Northward shifts in early winter abundance. *American Birds, 63*, 10–15. <https://hogisland.audubon.org/sites/default/files/documents/AB_109_CBC_and_Climate_Change.pdf>
+3. National Audubon Society. (2014). Update to data originally published in a supplement to Niven, D. K., Butcher, G. S., & Bancroft, G. T. (2009). Christmas Bird Counts and climate change: Northward shifts in early winter abundance. *American Birds, 63*, 10–15. <https://hogisland.audubon.org/sites/default/files/documents/AB_109_CBC_and_Climate_Change.pdf>
