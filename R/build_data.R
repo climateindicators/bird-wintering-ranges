@@ -6,7 +6,8 @@
 # data/meta.yml. Rerunning with unchanged inputs produces byte-identical output.
 # Nothing here touches the network.
 #
-# Each figure is reshaped to long format: year, series, value.\n#
+# Each figure is reshaped to long format: year, series, value.
+#
 # TO UPDATE THE DATA: drop replacement CSVs into data-raw/ and rerun. Headers
 # are asserted, not assumed, so a renamed or reordered column stops the build.
 
@@ -95,7 +96,16 @@ col <- function(name, type, description) {
   list(name = name, type = type, description = description)
 }
 
-# One entry per output column, in order.\ndescribe <- function(df, unit) {\n  docs <- list(\n    year   = col("year", "integer", "Calendar year of the winter estimate"),\n    series = col("series", "string", "mean, lower_confidence or upper_confidence (bounds of the likely range around the mean)"),\n    value  = col("value", "number", paste0(unit, " (change from the 1966 baseline)"))\n  )\n  unname(docs[names(df)])\n}\n
+# One entry per output column, in order.
+describe <- function(df, unit) {
+  docs <- list(
+    year   = col("year", "integer", "Winter, identified by the calendar year in which it began"),
+    series = col("series", "string", "mean, lower_confidence or upper_confidence (bounds of the likely range around the mean)"),
+    value  = col("value", "number", paste0(unit, ", change from the 1966 baseline"))
+  )
+  unname(docs[names(df)])
+}
+
 meta <- list(
   indicator = INDICATOR,
   datasets = list(
